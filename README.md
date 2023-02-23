@@ -39,11 +39,7 @@ node src/mnemonic_to_key.js （windows的斜线可能是反的）
 
 ## 投票
 
-Json文件生成完毕后，找到index.js文件，第四行代码表示的是要对哪个项目space进行投票，比如stargate的链接为 https://snapshot.org/#/stgdao.eth/ 
-
-那么'stg.eth'就是它的space。
-
-第五行表示的是投哪一个选项。
+Json文件生成完毕后，找到index.js文件，默认将对所有填写在数组list_space里的项目的所有有效单选进行投票。如果是多选，本程序不能处理。I attempted but signature format not working.
 
 如果你想使用刚刚生成的所有钱包地址进行投票，那么填写好space地址和投票选项后，直接在命令行下面运行
 
