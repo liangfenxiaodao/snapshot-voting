@@ -72,7 +72,7 @@ async function vote(account, space, proposal, choice) {
           },
           {
             "name": "choice",
-            "type": "uint32"
+            "type": "uint32" // TypeError: value.map is not a function, for uint32[]
           },
           {
             "name": "reason",
@@ -87,7 +87,21 @@ async function vote(account, space, proposal, choice) {
       "message": {
         "space": space,
         "proposal": proposal,
-        "choice": choice,
+        "choice": 1, //{"0":"1","1":"2","2":"3","3":"4","4":"5"},
+        //data types: see here https://docs.soliditylang.org/en/v0.8.17/abi-spec.html
+        //object
+        //no type called tuple or uint32[5], dict
+        //choice, need to change types definition above
+        // [0:1,1:2,2:3,3:4,4:5]
+        // {"0":"1","1":"2","2":"3","3":"4","4":"5"},
+
+        // uint[] [1,2,3,4,5] => ,"error_description":"invalid choice"
+        // string[] ["0:1","1:2","2:3","3:4","4:5"] => ,"error_description":"invalid choice"
+        //string "0:1,1:2,2:3,3:4,4:5" =>,"error_description":{}}
+        
+        /* https://github.com/snapshot-labs/snapshot/blob/077a71d085cfa1a814a93c51693b487e3ddf04c7/src/components/ModalVote.vue
+        https://snapshot.org/assets/index.542daadc.js  */
+
         "app": "snapshot",
         "reason": "",
         "from": checksum_address,
@@ -139,7 +153,8 @@ async function get_active_proposals(space, simple) {
 async function vote_on(account, space, choice) {
   const proposals = await get_active_proposals(space)
   for (const proposal of proposals) {
-    console.log(`Account: ${account.id} 投票进行中： ${space} - ${proposal.title} - ${proposal.choices[choice - 1]}`);
+    console.log(`Account: ${account.id} 投票进行中： ${space} - ${proposal.title} `);
+// - ${proposal.choices[choice - 1]}
     await vote(account, space, proposal.id, choice)
   }
 }
