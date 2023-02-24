@@ -39,6 +39,12 @@ node src/mnemonic_to_key.js （windows的斜线可能是反的）
 
 ## 投票
 
+Edit the other snapshot-example.json, so you control which wallet can vote to what different project.
+
+现在两个jsonfile都要载入environment:   
+Windows Powershell: $env:SNAP_LIST='贴入内容'    和$env:ETH_KEY='贴入keys.json内容'
+Linux: export SNAP_LIST=贴入内容    export ETH_KEY=刀哥keys.json内容
+
 Json文件生成完毕后，找到index.js文件，默认将对所有填写在数组list_space里的项目的所有有效单选进行投票。如果是多选，本程序不能处理。I attempted but signature format not working.
 
 如果你想使用刚刚生成的所有钱包地址进行投票，那么填写好space地址和投票选项后，直接在命令行下面运行
