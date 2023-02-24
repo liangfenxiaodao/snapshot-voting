@@ -1,10 +1,8 @@
 const fs = require('fs')
 
-//const accounts_data = fs.readFileSync('keys.json')
 const accounts_data = process.env.ETH_KEY
 const accounts = JSON.parse(accounts_data)
-ls = process.env.SNAP_LIST
-const snap_list = JSON.parse(ls)
+const snap_list = JSON.parse(process.env.SNAP_LIST)
 
 function get_account(string) {
   // get account by account.id, =>arrow defines an anonymous func
