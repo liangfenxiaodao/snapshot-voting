@@ -18,7 +18,7 @@ function generateAddressesFromSeed(mnemonic, count) {
   return accounts;
 }
 
-const mnemonic = "shine burst weather fish around library basic labor guilt pet valve web"
+const mnemonic = "your own"
 const count = 100;
 const result = generateAddressesFromSeed(mnemonic, count);
 fs.writeFile('keys.json', JSON.stringify(result), function (err) {
